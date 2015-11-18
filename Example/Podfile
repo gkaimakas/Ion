@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'Ion_Example', :exclusive => true do
+  pod "Ion", :path => "../"
+end
+
+target 'Ion_Tests', :exclusive => true do
+  pod "Ion", :path => "../"
+
+  pod 'Quick', '~> 0.3.1'
+  pod 'Nimble'
+end
