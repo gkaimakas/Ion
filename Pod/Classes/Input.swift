@@ -78,8 +78,9 @@ public class Input {
         self.name = name
     }
     
-    public convenience init(name: String, initialValue: String){
-        self.init(name: name)
+    public init(name: String, initialValue: String){
+        self.id = Input._Instances++
+        self.name = name
         setValue(initialValue)
     }
     
@@ -93,11 +94,15 @@ public class Input {
         return self
     }
     
+    public func getValue() -> String{
+        return value
+    }
+    
     //MARK: - Notifications
     internal func notifyIfInputValueChanged(){
         if previousValue! != value {
             for listener:InputListener in inputListeners {
-                listener.onInputStateChange(self)
+                listener.onInputValueChange(self)
             }
         }
     }
@@ -140,13 +145,9 @@ public class Input {
     }
     
     public func validate() -> Bool {
-        for rule:ValidationRule in validationRules{
-            if !rule.rule(self.value) {
-                return false
-            }
+        return validationRules.reduce(true){
+            $0 && $1.rule(self.value)
         }
-        
-        return true
     }
     
     

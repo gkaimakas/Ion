@@ -17,6 +17,8 @@ public class Form: SectionListener {
     
     private var dirty = false
     private var submitted = false
+    private var currentState = false
+    private var previousState = false
     
     private var sections = [Section]()
     private var formListeners = [FormListener]()
@@ -32,14 +34,6 @@ public class Form: SectionListener {
                 }
                 return result
         }
-    }
-    
-    public var isDirty: Bool{
-        return dirty
-    }
-    
-    public var isSubmitted: Bool{
-        return submitted
     }
     
     public var errors:[String]? {
@@ -59,6 +53,18 @@ public class Form: SectionListener {
         }
         
         return nil
+    }
+    
+    public var isDirty: Bool{
+        return dirty
+    }
+    
+    public var isSubmitted: Bool{
+        return submitted
+    }
+    
+    public var isValid:Bool {
+        return currentState
     }
     
     public var numberOfSections:Int {
@@ -114,11 +120,16 @@ public class Form: SectionListener {
     }
     
     public func onSectionStateChange(section: Section) {
-        
+        setCurrentState(validate())
     }
     
     public func onSectionSubmit(section: Section) {
         
+    }
+    
+    public func setCurrentState(state:Bool){
+        previousState = currentState
+        currentState = state
     }
     
     public func submit(){
@@ -127,5 +138,11 @@ public class Form: SectionListener {
         }
         submitted = true
         notifyIfFormSubmitted()
+    }
+    
+    public func validate() -> Bool {
+        return sections.reduce(true){
+            $0 && $1.validate()
+        }
     }
 }

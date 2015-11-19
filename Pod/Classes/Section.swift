@@ -26,47 +26,32 @@ public class Section: InputListener{
     
     //MARK: - Computed Properties
     
-    public var isDirty: Bool{
-        return dirty
-    }
-    
-    public var numberOfInputs: Int {
-        return inputs.count
-    }
-    
-    public var isSubmitted: Bool {
-        return submitted
-    }
-    
-    public var isValid: Bool {
-        return currentState
-    }
     
     public var data: [String: Any]{
         return inputs.map{
             $0.data
-        }.filter(){
-            $0 != nil
-        }.reduce([String:Any]()) { (var result:[String: Any], data:[String : Any]?) -> [String:Any] in
-            if let _data = data {
-                for (key, value) in _data{
-                    result[key] = value
+            }.filter(){
+                $0 != nil
+            }.reduce([String:Any]()) { (var result:[String: Any], data:[String : Any]?) -> [String:Any] in
+                if let _data = data {
+                    for (key, value) in _data{
+                        result[key] = value
+                    }
                 }
-            }
-            return result
+                return result
         }
     }
     
     public var errors:[String]? {
         let errorList = inputs.map{
             $0.errors
-        }.filter(){
-            $0 != nil
-        }.reduce([String]()) { (var result:[String], data: [String]?) -> [String] in
-            if let _data = data {
-                result.appendContentsOf(_data)
-            }
-            return result
+            }.filter(){
+                $0 != nil
+            }.reduce([String]()) { (var result:[String], data: [String]?) -> [String] in
+                if let _data = data {
+                    result.appendContentsOf(_data)
+                }
+                return result
         }
         
         if errorList.count != 0{
@@ -74,6 +59,22 @@ public class Section: InputListener{
         }
         
         return nil
+    }
+    
+    public var isDirty: Bool{
+        return dirty
+    }
+    
+    public var isValid: Bool {
+        return currentState
+    }
+    
+    public var isSubmitted: Bool {
+        return submitted
+    }
+    
+    public var numberOfInputs: Int {
+        return inputs.count
     }
     
     
@@ -151,11 +152,8 @@ public class Section: InputListener{
     }
     
     public func validate() -> Bool{
-        for input: Input in inputs{
-            if !input.isValid{
-                return false
-            }
+        return inputs.reduce(true){
+            $0 && $1.validate()
         }
-        return true
     }
 }
