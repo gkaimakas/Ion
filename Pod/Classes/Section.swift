@@ -66,7 +66,7 @@ public class Section: InputListener{
     }
     
     public var isValid: Bool {
-        return currentState
+        return validate()
     }
     
     public var isSubmitted: Bool {
@@ -128,6 +128,7 @@ public class Section: InputListener{
     
     public func onInputStateChange(input: Input) {
         setCurrentState(validate())
+        notifyIfSectionStateChange()
     }
     
     public func onInputValueChange(input: Input) {

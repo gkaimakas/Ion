@@ -64,7 +64,7 @@ public class Form: SectionListener {
     }
     
     public var isValid:Bool {
-        return currentState
+        return validate()
     }
     
     public var numberOfSections:Int {
