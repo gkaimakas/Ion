@@ -31,6 +31,10 @@ public class Form<T: DictionaryInitProtocol>: SectionListener {
         }
     }
     
+    public var dataObject:T {
+        return T(dictionary: self.data)
+    }
+    
     public var errors:[String]? {
         let errorList = sections.map{
             $0.errors
