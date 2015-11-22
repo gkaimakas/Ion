@@ -15,7 +15,16 @@ public class SwitchInput: Input {
     
     public init(name: String, description: String) {
         self.description = description
-        super.init(name: name, initialValue: SwitchInput.OFF_VALUE)
+        super.init(name: name, value: SwitchInput.OFF_VALUE)
+    }
+
+    public init(copy: SwitchInput) {
+        self.description = copy.description
+        super.init(copy: copy)
+    }
+    
+    public override func copy() -> SwitchInput {
+        return SwitchInput(copy: self)
     }
     
     public var isOn: Bool{

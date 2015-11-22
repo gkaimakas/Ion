@@ -6,7 +6,7 @@
 //
 //
 
-public class Section: InputListener{    
+public class Section: InputListener{
     public let id: Int64
     public let name: String
     
@@ -16,7 +16,7 @@ public class Section: InputListener{
     private var submitted = false
     
     private var inputs = [Input]()
-    internal var parentForm: Form?
+    
     private var sectionListeners = [SectionListener]()
     
     //MARK: - Computed Properties
@@ -81,8 +81,8 @@ public class Section: InputListener{
     
     public func addInput(input:Input) -> Section{
         inputs.append(input)
-        input.parentSection = self
         input.addInputListener(self)
+        
         return self
     }
     

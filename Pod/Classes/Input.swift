@@ -9,11 +9,6 @@
 import SwiftValidators
 
 public class Input {
-    public enum Type{
-        case None
-        case Text
-    }
-    
     public static let DEFAULT_VALUE = ""
     
     public let id: Int64
@@ -24,13 +19,12 @@ public class Input {
     private var previousState = false
     private var submitted = false
     
+    private let originalValue: String
     private var value: String = Input.DEFAULT_VALUE
     private var previousValue: String?
     
     private var inputListeners = [InputListener]()
     private var validationRules = [ValidationRule]()
-    
-    internal var parentSection: Section?
     
     //MARK: - Computed Properties
     
@@ -72,12 +66,37 @@ public class Input {
     public init(name: String){
         self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
+        self.originalValue = Input.DEFAULT_VALUE
+        self.value = Input.DEFAULT_VALUE
+        self.previousValue = nil
     }
     
-    public init(name: String, initialValue: String){
+    public init(name: String, value: String){
         self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
-        setValue(initialValue)
+        self.originalValue = value
+        self.value = value
+        self.previousValue = nil
+    }
+    
+    public init(copy: Input) {
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.name = copy.name
+        
+        self.originalValue = copy.originalValue
+        self.value = copy.value
+        self.previousValue = copy.previousValue
+        
+        self.dirty = copy.dirty
+        self.currentState = copy.currentState
+        self.previousValue = copy.previousValue
+        self.submitted = copy.submitted
+        
+        for rule:ValidationRule in copy.validationRules{
+            self.validationRules.append(rule)
+        }
+        
+        // Input Listeners and parentSection must not be copied
     }
     
     public func addInputListener(listener:InputListener) -> Input {
@@ -88,6 +107,10 @@ public class Input {
     public func addValidationRule(rule: Validation, errorMessage: String) -> Input{
         validationRules.append(ValidationRule(rule: rule, errorMessage: errorMessage))
         return self
+    }
+    
+    public func copy() -> Input{
+        return Input(copy: self)
     }
     
     public func getValue() -> String{

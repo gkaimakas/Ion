@@ -6,7 +6,7 @@
 //
 //
 
-public class Form<T: DictionaryInitProtocol>: SectionListener {
+public class Form: SectionListener {
     public let id: Int64
     public let name: String
     
@@ -31,7 +31,7 @@ public class Form<T: DictionaryInitProtocol>: SectionListener {
         }
     }
     
-    public var dataObject:T {
+    public func dataObject<T: DictionaryInitProtocol>(type: T.Type) -> T {
         return T(dictionary: self.data)
     }
     
@@ -78,7 +78,6 @@ public class Form<T: DictionaryInitProtocol>: SectionListener {
     
     public func addSection(section: Section) -> Form{
         sections.append(section)
-        section.parentForm = self
         section.addSectionListener(self)
         return self
     }
