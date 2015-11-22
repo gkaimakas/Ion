@@ -6,13 +6,8 @@
 //
 //
 
-public class Form: SectionListener {
-    private static var _Instances = 0
-    public static var INSTANCES: Int {
-        return Form._Instances
-    }
-    
-    public let id: Int
+public class Form<T: DictionaryInitProtocol>: SectionListener {
+    public let id: Int64
     public let name: String
     
     private var dirty = false
@@ -73,7 +68,7 @@ public class Form: SectionListener {
     
     //MARK: - Initializers
     public init(name:String){
-        self.id = Form._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
     }
     

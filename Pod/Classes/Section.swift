@@ -6,13 +6,8 @@
 //
 //
 
-public class Section: InputListener{
-    private static var _Instances = 0
-    public static var INSTANCES: Int {
-        return Section._Instances
-    }
-    
-    public let id: Int
+public class Section: InputListener{    
+    public let id: Int64
     public let name: String
     
     private var dirty = false
@@ -80,7 +75,7 @@ public class Section: InputListener{
     
     //MARK: - Initializers
     public init(name:String){
-        self.id = Section._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
     }
     

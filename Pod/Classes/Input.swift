@@ -14,13 +14,9 @@ public class Input {
         case Text
     }
     
-    private static var _Instances = 0
-    public static var INSTANCES: Int {
-        return Input._Instances
-    }
     public static let DEFAULT_VALUE = ""
     
-    public let id: Int
+    public let id: Int64
     public let name: String
     
     private var dirty = false
@@ -74,12 +70,12 @@ public class Input {
     
     //MARK: - Initializers
     public init(name: String){
-        self.id = Input._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
     }
     
     public init(name: String, initialValue: String){
-        self.id = Input._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
         setValue(initialValue)
     }
