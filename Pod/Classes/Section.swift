@@ -21,7 +21,6 @@ public class Section: InputListener{
     
     //MARK: - Computed Properties
     
-    
     public var data: [String: Any]{
         return inputs.map{
             $0.data
