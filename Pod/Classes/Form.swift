@@ -31,10 +31,6 @@ public class Form: SectionListener {
         }
     }
     
-    public func dataObject<T: DictionaryInitProtocol>(type: T.Type) -> T {
-        return T(dictionary: self.data)
-    }
-    
     public var errors:[String]? {
         let errorList = sections.map{
             $0.errors
