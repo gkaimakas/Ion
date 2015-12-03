@@ -6,7 +6,7 @@
 //
 //
 
-public class Form: SectionListener {
+public class Form {
     public let id: Int64
     public let name: String
     
@@ -106,21 +106,6 @@ public class Form: SectionListener {
         }
     }
     
-    //MARK: - SectionListener Implementation
-    
-    public func onSectionInputValueChange(section: Section, input: Input) {
-        dirty = true
-        notifyIfFormInputValueChange(section, input: input)
-    }
-    
-    public func onSectionStateChange(section: Section) {
-        setCurrentState(validate())
-    }
-    
-    public func onSectionSubmit(section: Section) {
-        
-    }
-    
     public func setCurrentState(state:Bool){
         previousState = currentState
         currentState = state
@@ -138,5 +123,23 @@ public class Form: SectionListener {
         return sections.reduce(true){
             $0 && $1.validate()
         }
+    }
+}
+
+//MARK: - SectionListener Implementation
+
+extension Form: SectionListener {
+    
+    public func onSectionInputValueChange(section: Section, input: Input) {
+        dirty = true
+        notifyIfFormInputValueChange(section, input: input)
+    }
+    
+    public func onSectionStateChange(section: Section) {
+        setCurrentState(validate())
+    }
+    
+    public func onSectionSubmit(section: Section) {
+        
     }
 }
