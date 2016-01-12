@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "Ion"
   s.version          = "0.1.0"
-  s.summary          = "A short description of Ion."
+  s.summary          = "Easy form creation for iOS"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,6 +17,10 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
+						Form creation for iOS apps has never been easier. Simply create your form object,
+						wire it to your views and have access to a myriad of functionality available such as
+						form verification, form state changes notification, the form data ready to be sent 
+						on a backend using Alamofire and much more.
                        DESC
 
   s.homepage         = "https://github.com/<GITHUB_USERNAME>/Ion"
