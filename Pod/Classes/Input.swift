@@ -8,19 +8,13 @@
 
 import SwiftValidators
 
+public typealias BeforeValueChangeAction = (String?, String) -> Void
+public typealias AfterValueChangeAction = (String) -> Void
+
 public class Input {
-    public enum Type{
-        case None
-        case Text
-    }
-    
-    private static var _Instances = 0
-    public static var INSTANCES: Int {
-        return Input._Instances
-    }
     public static let DEFAULT_VALUE = ""
     
-    public let id: Int
+    public let id: Int64
     public let name: String
     
     private var dirty = false
@@ -28,13 +22,15 @@ public class Input {
     private var previousState = false
     private var submitted = false
     
+    private let originalValue: String
     private var value: String = Input.DEFAULT_VALUE
     private var previousValue: String?
     
     private var inputListeners = [InputListener]()
     private var validationRules = [ValidationRule]()
     
-    internal var parentSection: Section?
+    private var beforeValueChangeAction: BeforeValueChangeAction? = nil
+    private var afterValueChangeAction: AfterValueChangeAction? = nil
     
     //MARK: - Computed Properties
     
@@ -74,14 +70,39 @@ public class Input {
     
     //MARK: - Initializers
     public init(name: String){
-        self.id = Input._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
+        self.originalValue = Input.DEFAULT_VALUE
+        self.value = Input.DEFAULT_VALUE
+        self.previousValue = nil
     }
     
-    public init(name: String, initialValue: String){
-        self.id = Input._Instances++
+    public init(name: String, value: String){
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
-        setValue(initialValue)
+        self.originalValue = value
+        self.value = value
+        self.previousValue = nil
+    }
+    
+    public init(copy: Input) {
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.name = copy.name
+        
+        self.originalValue = copy.originalValue
+        self.value = copy.value
+        self.previousValue = copy.previousValue
+        
+        self.dirty = copy.dirty
+        self.currentState = copy.currentState
+        self.previousValue = copy.previousValue
+        self.submitted = copy.submitted
+        
+        for rule:ValidationRule in copy.validationRules{
+            self.validationRules.append(rule)
+        }
+        
+        // Input Listeners and parentSection must not be copied
     }
     
     public func addInputListener(listener:InputListener) -> Input {
@@ -94,15 +115,24 @@ public class Input {
         return self
     }
     
-    public func getValue() -> String{
-        return value
+    public func copy() -> Input{
+        return Input(copy: self)
+    }
+    
+    public func forceValidate() {
+        setCurrentState(validate())
+        notifyIfInputForcedValidate()
+        notifyIfInputValueChanged()
+        notifyIfInputStateChanged()
     }
     
     //MARK: - Notifications
     internal func notifyIfInputValueChanged(){
-        if previousValue! != value {
-            for listener:InputListener in inputListeners {
-                listener.onInputValueChange(self)
+        if let previousValue = self.previousValue {
+            if previousValue != value {
+                for listener:InputListener in inputListeners {
+                    listener.onInputValueChange(self)
+                }
             }
         }
     }
@@ -123,6 +153,22 @@ public class Input {
         }
     }
     
+    internal func notifyIfInputForcedValidate(){
+        for listener: InputListener in inputListeners {
+            listener.onInputForceValidate(self)
+        }
+    }
+    
+    public func setAfterValueChangeAction(action: AfterValueChangeAction) -> Input {
+        afterValueChangeAction = action
+        return self
+    }
+    
+    public func setBeforeValueChangeAction(action: BeforeValueChangeAction) -> Input{
+        beforeValueChangeAction = action
+        return self
+    }
+    
     public func setCurrentState(state:Bool){
         previousState = currentState
         currentState = state
@@ -131,7 +177,16 @@ public class Input {
     public func setValue(value:String){
         dirty = true
         previousValue = self.value
+        
+        if let action = beforeValueChangeAction {
+            action(previousValue, value)
+        }
+        
         self.value = value
+        
+        if let action = afterValueChangeAction {
+            action(value)
+        }
         
         setCurrentState(validate())
         
@@ -149,8 +204,10 @@ public class Input {
             $0 && $1.rule(self.value)
         }
     }
-    
-    
-    
-    
+}
+
+extension Input: ValidatorProtocol {
+    public func getValue() -> String{
+        return value
+    }
 }

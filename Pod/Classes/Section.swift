@@ -6,13 +6,8 @@
 //
 //
 
-public class Section: InputListener{
-    private static var _Instances = 0
-    public static var INSTANCES: Int {
-        return Section._Instances
-    }
-    
-    public let id: Int
+public class Section{
+    public let id: Int64
     public let name: String
     
     private var dirty = false
@@ -21,11 +16,10 @@ public class Section: InputListener{
     private var submitted = false
     
     private var inputs = [Input]()
-    internal var parentForm: Form?
+    
     private var sectionListeners = [SectionListener]()
     
     //MARK: - Computed Properties
-    
     
     public var data: [String: Any]{
         return inputs.map{
@@ -80,14 +74,14 @@ public class Section: InputListener{
     
     //MARK: - Initializers
     public init(name:String){
-        self.id = Section._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
     }
     
     public func addInput(input:Input) -> Section{
         inputs.append(input)
-        input.parentSection = self
         input.addInputListener(self)
+        
         return self
     }
     
@@ -124,22 +118,6 @@ public class Section: InputListener{
         
     }
     
-    //MARK: - InputListener implementation
-    
-    public func onInputStateChange(input: Input) {
-        setCurrentState(validate())
-        notifyIfSectionStateChange()
-    }
-    
-    public func onInputValueChange(input: Input) {
-        dirty = true
-        notifyIfSectionInputValueChange(input)
-    }
-    
-    public func onInputSubmitted(input: Input) {
-        
-    }
-    
     public func setCurrentState(state:Bool){
         previousState = currentState
         currentState = state
@@ -156,5 +134,29 @@ public class Section: InputListener{
         return inputs.reduce(true){
             $0 && $1.validate()
         }
+    }
+}
+
+
+
+//MARK: - InputListener implementation
+extension Section: InputListener {
+    
+    public func onInputStateChange(input: Input) {
+        setCurrentState(validate())
+        notifyIfSectionStateChange()
+    }
+    
+    public func onInputValueChange(input: Input) {
+        dirty = true
+        notifyIfSectionInputValueChange(input)
+    }
+    
+    public func onInputSubmitted(input: Input) {
+        
+    }
+    
+    public func onInputForceValidate(inpt: Input) {
+        
     }
 }

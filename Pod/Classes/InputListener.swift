@@ -10,4 +10,5 @@ public protocol InputListener {
     func onInputValueChange(input:Input)
     func onInputStateChange(input:Input)
     func onInputSubmitted(input:Input)
+    func onInputForceValidate(inpt:Input)
 }

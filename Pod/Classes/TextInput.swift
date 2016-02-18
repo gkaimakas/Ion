@@ -13,4 +13,13 @@ public class TextInput: Input {
         self.hint = hint
         super.init(name: name)
     }
+
+    public init(copy: TextInput) {
+        self.hint = copy.hint
+        super.init(copy: copy)
+    }
+    
+    public override func copy() -> TextInput {
+        return TextInput(copy: self)
+    }
 }

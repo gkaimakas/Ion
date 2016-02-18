@@ -6,13 +6,8 @@
 //
 //
 
-public class Form: SectionListener {
-    private static var _Instances = 0
-    public static var INSTANCES: Int {
-        return Form._Instances
-    }
-    
-    public let id: Int
+public class Form {
+    public let id: Int64
     public let name: String
     
     private var dirty = false
@@ -73,13 +68,12 @@ public class Form: SectionListener {
     
     //MARK: - Initializers
     public init(name:String){
-        self.id = Form._Instances++
+        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
         self.name = name
     }
     
     public func addSection(section: Section) -> Form{
         sections.append(section)
-        section.parentForm = self
         section.addSectionListener(self)
         return self
     }
@@ -112,21 +106,6 @@ public class Form: SectionListener {
         }
     }
     
-    //MARK: - SectionListener Implementation
-    
-    public func onSectionInputValueChange(section: Section, input: Input) {
-        dirty = true
-        notifyIfFormInputValueChange(section, input: input)
-    }
-    
-    public func onSectionStateChange(section: Section) {
-        setCurrentState(validate())
-    }
-    
-    public func onSectionSubmit(section: Section) {
-        
-    }
-    
     public func setCurrentState(state:Bool){
         previousState = currentState
         currentState = state
@@ -144,5 +123,23 @@ public class Form: SectionListener {
         return sections.reduce(true){
             $0 && $1.validate()
         }
+    }
+}
+
+//MARK: - SectionListener Implementation
+
+extension Form: SectionListener {
+    
+    public func onSectionInputValueChange(section: Section, input: Input) {
+        dirty = true
+        notifyIfFormInputValueChange(section, input: input)
+    }
+    
+    public func onSectionStateChange(section: Section) {
+        setCurrentState(validate())
+    }
+    
+    public func onSectionSubmit(section: Section) {
+        
     }
 }
