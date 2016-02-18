@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "Ion"
-  s.version          = "0.1.0"
-  s.summary          = "Easy form creation for iOS"
+  s.version          = "0.2.1"
+  s.summary          = "A short description of Ion."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
