@@ -90,19 +90,19 @@ public class Form {
     
     public func notifyIfFormInputValueChange(section: Section, input:Input){
         for listener: FormListener in formListeners{
-            listener.onFormInputValueChange(self,section: section, input: input)
+            listener.formIputDidChangeValue(self,section: section, input: input)
         }
     }
     
     public func notifyIfFormStateChange(){
         for listener: FormListener in formListeners{
-            listener.onFormStateChange(self)
+            listener.formDidChangeState(self)
         }
     }
     
     public func notifyIfFormSubmitted(){
         for listener: FormListener in formListeners{
-            listener.onFormSubmitted(self)
+            listener.formWasSubmitted(self)
         }
     }
     
@@ -130,16 +130,18 @@ public class Form {
 
 extension Form: SectionListener {
     
-    public func onSectionInputValueChange(section: Section, input: Input) {
+    public func sectionInputDidChangeValue(section: Section, input: Input) {
         dirty = true
         notifyIfFormInputValueChange(section, input: input)
     }
     
-    public func onSectionStateChange(section: Section) {
+    public func sectionDidChangeState(section: Section) {
         setCurrentState(validate())
     }
     
-    public func onSectionSubmit(section: Section) {
+    public func sectionWasSubmitted(section: Section) {
         
     }
+    
+    
 }

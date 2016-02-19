@@ -97,14 +97,14 @@ public class Section{
     
     internal func notifyIfSectionInputValueChange(input: Input){
         for listener:SectionListener in sectionListeners{
-            listener.onSectionInputValueChange(self, input: input)
+            listener.sectionInputDidChangeValue(self, input: input)
         }
     }
     
     internal func notifyIfSectionStateChange(){
         if previousState != currentState {
             for listener:SectionListener in sectionListeners{
-                listener.onSectionStateChange(self)
+                listener.sectionDidChangeState(self)
             }
         }
     }
@@ -112,7 +112,7 @@ public class Section{
     internal func notifyIfSectionSubmitted(){
         if submitted{
             for listener:SectionListener in sectionListeners{
-                listener.onSectionSubmit(self)
+                listener.sectionWasSubmitted(self)
             }
         }
         
@@ -142,21 +142,21 @@ public class Section{
 //MARK: - InputListener implementation
 extension Section: InputListener {
     
-    public func onInputStateChange(input: Input) {
+    public func inputDidChangeState(input: Input) {
         setCurrentState(validate())
         notifyIfSectionStateChange()
     }
     
-    public func onInputValueChange(input: Input) {
+    public func inputDidChangeValue(input: Input) {
         dirty = true
         notifyIfSectionInputValueChange(input)
     }
     
-    public func onInputSubmitted(input: Input) {
+    public func inputWasForceValidated(input: Input) {
         
     }
     
-    public func onInputForceValidate(inpt: Input) {
+    public func inputWasSubmitted(input: Input) {
         
     }
 }

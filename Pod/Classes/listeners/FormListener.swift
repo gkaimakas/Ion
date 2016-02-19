@@ -7,7 +7,7 @@
 //
 
 public protocol FormListener {
-    func onFormInputValueChange(form:Form, section:Section, input: Input)
-    func onFormStateChange(form: Form)
-    func onFormSubmitted(form: Form)
+    func formIputDidChangeValue(form: Form, section: Section, input: Input)
+    func formDidChangeState(form: Form)
+    func formWasSubmitted(form: Form)
 }

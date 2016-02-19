@@ -7,7 +7,8 @@
 //
 
 public protocol SectionListener {
-    func onSectionInputValueChange(section:Section, input:Input)
-    func onSectionStateChange(section:Section)
-    func onSectionSubmit(section:Section)
+
+    func sectionDidChangeState(section: Section)
+    func sectionInputDidChangeValue(section: Section, input: Input)
+    func sectionWasSubmitted(section: Section)
 }

@@ -131,7 +131,7 @@ public class Input {
         if let previousValue = self.previousValue {
             if previousValue != value {
                 for listener:InputListener in inputListeners {
-                    listener.onInputValueChange(self)
+                    listener.inputDidChangeValue(self)
                 }
             }
         }
@@ -140,7 +140,7 @@ public class Input {
     internal func notifyIfInputStateChanged(){
         if previousState != currentState {
             for listener:InputListener in inputListeners{
-                listener.onInputStateChange(self)
+                listener.inputDidChangeState(self)
             }
         }
     }
@@ -148,14 +148,14 @@ public class Input {
     internal func notifyIfInputSubmitted(){
         if submitted{
             for listener:InputListener in inputListeners{
-                listener.onInputSubmitted(self)
+                listener.inputWasSubmitted(self)
             }
         }
     }
     
     internal func notifyIfInputForcedValidate(){
         for listener: InputListener in inputListeners {
-            listener.onInputForceValidate(self)
+            listener.inputWasForceValidated(self)
         }
     }
     
