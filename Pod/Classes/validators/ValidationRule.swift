@@ -7,7 +7,7 @@
 //
 import SwiftValidators
 
-struct ValidationRule {
+public struct ValidationRule {
     let rule: Validation
     let errorMessage: String
     

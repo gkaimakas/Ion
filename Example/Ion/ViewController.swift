@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import Ion
+import SwiftValidators
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        Form(name: "hello")
+            .addSection(
+                Section(name: "from the")
+                    .addInput(Input(name: "other side")
+            )
+        )
     }
 
     override func didReceiveMemoryWarning() {
