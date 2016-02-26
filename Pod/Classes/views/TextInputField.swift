@@ -18,10 +18,18 @@ public class TextInputField: UITextField {
         self.input = input
         
         if let passwordInput = self.input as! PasswordInput? {
+            secureTextEntry = true
+            keyboardType = .Default
+            inputView = nil
+            
             return
         }
         
         if let emailInput = self.input as! EmailInput? {
+            secureTextEntry = false
+            keyboardType = .EmailAddress
+            inputView = nil
+            
             return
         }
     }
@@ -32,7 +40,17 @@ public class TextInputField: UITextField {
 extension TextInputField: UITextFieldDelegate {
     public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
+        if let input = input {
+            let newValue = (text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            input.setValue(newValue)
+        }
         
         return true
+    }
+    
+    public func textFieldDidEndEditing(textField: UITextField) {
+        if let text = textField.text, let input = self.input {
+            input.setValue(text)
+        }
     }
 }
