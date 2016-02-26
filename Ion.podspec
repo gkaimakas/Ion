@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Ion"
-  s.version          = "0.5.4"
+  s.version          = "0.5.6"
   s.summary          = "A short description of Ion."
 
 # This description is used to generate tags and improve search results.
@@ -38,6 +38,7 @@ Pod::Spec.new do |s|
     'Ion' => ['Pod/Assets/*.png']
   }
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+
+  s.frameworks = 'UIKit'
   s.dependency 'SwiftValidators'
 end

@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 public class TextInput: Input {
     public let hint:String
     
