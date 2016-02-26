@@ -11,7 +11,7 @@ import Foundation
 public class DateInput: Input {
     public let hint: String
     
-    init(name: String, hint: String) {
+    public init(name: String, hint: String) {
         self.hint = hint
         super.init(name: name)
     }
