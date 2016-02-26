@@ -32,6 +32,7 @@ public class DateInputField: UITextField {
         if let dateFormat = dateFormat, let input = self.input {
             dateFormatter.dateFormat = dateFormat
             let dateString = dateFormatter.stringFromDate(sender.date)
+            text = dateString
             input.setValue(dateString)
         }
     }
