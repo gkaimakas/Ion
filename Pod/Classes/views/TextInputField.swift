@@ -17,7 +17,7 @@ public class TextInputField: UITextField {
         self.delegate = self
         self.input = input
         
-        if let passwordInput = self.input as! PasswordInput? {
+        if let passwordInput = self.input as? PasswordInput {
             secureTextEntry = true
             keyboardType = .Default
             inputView = nil
@@ -25,7 +25,7 @@ public class TextInputField: UITextField {
             return
         }
         
-        if let emailInput = self.input as! EmailInput? {
+        if let emailInput = self.input as? EmailInput {
             secureTextEntry = false
             keyboardType = .EmailAddress
             inputView = nil
