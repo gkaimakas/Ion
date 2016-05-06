@@ -32,6 +32,12 @@ public class TextInputField: UITextField {
             
             return
         }
+		
+		if let PhoneInput = self.input as? PhoneInput {
+			secureTextEntry = false
+			keyboardType = UIKeyboardType.PhonePad
+			inputView = nil
+		}
     }
     
     
