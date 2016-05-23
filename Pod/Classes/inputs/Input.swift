@@ -8,8 +8,8 @@
 
 import SwiftValidators
 
-public typealias BeforeValueChangeAction = (String?, String) -> Void
-public typealias AfterValueChangeAction = (String) -> Void
+public typealias BeforeValueChangeAction = (Input) -> Void
+public typealias AfterValueChangeAction = (Input) -> Void
 
 public class Input {
     public static let DEFAULT_VALUE = ""
@@ -29,8 +29,8 @@ public class Input {
     private var inputListeners = [InputListener]()
     private var validationRules = [ValidationRule]()
     
-    private var beforeValueChangeAction: BeforeValueChangeAction? = nil
-    private var afterValueChangeAction: AfterValueChangeAction? = nil
+    private var beforeValueChangeActions: [BeforeValueChangeAction] = []
+    private var afterValueChangeActions: [AfterValueChangeAction] = []
     
     //MARK: - Computed Properties
     
@@ -159,13 +159,13 @@ public class Input {
         }
     }
     
-    public func setAfterValueChangeAction(action: AfterValueChangeAction) -> Input {
-        afterValueChangeAction = action
+    public func afterValueChange(action: AfterValueChangeAction) -> Input {
+        afterValueChangeActions.append(action)
         return self
     }
     
-    public func setBeforeValueChangeAction(action: BeforeValueChangeAction) -> Input{
-        beforeValueChangeAction = action
+    public func beforeValueChage(action: BeforeValueChangeAction) -> Input{
+        beforeValueChangeActions.append(action)
         return self
     }
     
@@ -177,16 +177,16 @@ public class Input {
     public func setValue(value:String){
         dirty = true
         previousValue = self.value
-        
-        if let action = beforeValueChangeAction {
-            action(previousValue, value)
-        }
+		
+		for action in beforeValueChangeActions {
+			action(self)
+		}
         
         self.value = value
-        
-        if let action = afterValueChangeAction {
-            action(value)
-        }
+		
+		for action in afterValueChangeActions {
+			action(self)
+		}
         
         setCurrentState(validate())
         
