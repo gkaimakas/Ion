@@ -85,6 +85,10 @@ public class Form {
     public func sectionAtIndex(index: Int) -> Section{
         return sections[index]
     }
+	
+	public func dataAs<T: DictionaryInitProtocol>(type: T.Type) -> T? {
+		return T(dictionary: self.data)
+	}
     
     //MARK: - Notifications
     

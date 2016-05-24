@@ -7,5 +7,5 @@
 //
 
 public protocol DictionaryInitProtocol{
-    init(dictionary:[String: Any])
+    init?(dictionary:[String: Any])
 }
