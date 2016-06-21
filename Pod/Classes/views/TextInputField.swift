@@ -11,8 +11,19 @@ import UIKit
 
 public class TextInputField: UITextField {
     
-    private var input: TextInput? = nil
-    
+	public var input: TextInput? = nil {
+		didSet {
+			if let input = input {
+				
+			} else {
+				delegate = nil
+				secureTextEntry = false
+				keyboardType = .Default
+				inputView = nil
+			}
+		}
+	}
+		
     public func setInput(input: TextInput) {
         self.delegate = self
         self.input = input
