@@ -6,41 +6,44 @@
 //
 //
 
-public class Form {
-    public let id: Int64
-    public let name: String
+open class Form {
+    open let id: Int64
+    open let name: String
     
-    private var dirty = false
-    private var submitted = false
-    private var currentState = false
-    private var previousState = false
+    fileprivate var dirty = false
+    fileprivate var submitted = false
+    fileprivate var currentState = false
+    fileprivate var previousState = false
     
-    private var sections = [Section]()
-    private var formListeners = [FormListener]()
+    fileprivate var sections = [Section]()
+    fileprivate var formListeners = [FormListener]()
     
     //MARK: - Computed Properties
     
-    public var data: [String: Any]{
+    open var data: [String: Any]{
         return sections.map{
             $0.data
-            }.reduce([String:Any]()) { (var result:[String: Any], data:[String : Any]) -> [String:Any] in
+            }.reduce([String:Any]()) { (result:[String: Any], data:[String : Any]) -> [String:Any] in
+				var _result = result
                 for (key, value) in data{
-                    result[key] = value
+                    _result[key] = value
                 }
-                return result
+
+                return _result
         }
     }
     
-    public var errors:[String]? {
+    open var errors:[String]? {
         let errorList = sections.map{
             $0.errors
             }.filter(){
                 $0 != nil
-            }.reduce([String]()) { (var result:[String], data: [String]?) -> [String] in
+            }.reduce([String]()) { (result:[String], data: [String]?) -> [String] in
+				var _result = result
                 if let _data = data {
-                    result.appendContentsOf(_data)
+                    _result.append(contentsOf: _data)
                 }
-                return result
+                return _result
         }
         
         if errorList.count != 0{
@@ -50,72 +53,72 @@ public class Form {
         return nil
     }
     
-    public var isDirty: Bool{
+    open var isDirty: Bool{
         return dirty
     }
     
-    public var isSubmitted: Bool{
+    open var isSubmitted: Bool{
         return submitted
     }
     
-    public var isValid:Bool {
+    open var isValid:Bool {
         return validate()
     }
     
-    public var numberOfSections:Int {
+    open var numberOfSections:Int {
         return sections.count
     }
     
     //MARK: - Initializers
     public init(name:String){
-        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.id = Int64(Date().timeIntervalSince1970 * 1000)
         self.name = name
     }
     
-    public func addSection(section: Section) -> Form{
+    open func addSection(_ section: Section) -> Form{
         sections.append(section)
         section.addSectionListener(self)
         return self
     }
     
-    public func addFormListener(listener: FormListener){
+    open func addFormListener(_ listener: FormListener){
         formListeners.append(listener)
     }
     
-    public func sectionAtIndex(index: Int) -> Section{
+    open func sectionAtIndex(_ index: Int) -> Section{
         return sections[index]
     }
 	
-	public func dataAs<T: DictionaryInitProtocol>(type: T.Type) -> T? {
+	open func dataAs<T: DictionaryInitProtocol>(_ type: T.Type) -> T? {
 		return T(dictionary: self.data)
 	}
     
     //MARK: - Notifications
     
-    public func notifyIfFormInputValueChange(section: Section, input:Input){
+    open func notifyIfFormInputValueChange(_ section: Section, input:Input){
         for listener: FormListener in formListeners{
             listener.formIputDidChangeValue(self,section: section, input: input)
         }
     }
     
-    public func notifyIfFormStateChange(){
+    open func notifyIfFormStateChange(){
         for listener: FormListener in formListeners{
             listener.formDidChangeState(self)
         }
     }
     
-    public func notifyIfFormSubmitted(){
+    open func notifyIfFormSubmitted(){
         for listener: FormListener in formListeners{
             listener.formWasSubmitted(self)
         }
     }
     
-    public func setCurrentState(state:Bool){
+    open func setCurrentState(_ state:Bool){
         previousState = currentState
         currentState = state
     }
     
-    public func submit(){
+    open func submit(){
         for section: Section in sections{
             section.submit()
         }
@@ -123,7 +126,7 @@ public class Form {
         notifyIfFormSubmitted()
     }
     
-    public func validate() -> Bool {
+    open func validate() -> Bool {
         return sections.reduce(true){
             $0 && $1.validate()
         }
@@ -134,16 +137,16 @@ public class Form {
 
 extension Form: SectionListener {
     
-    public func sectionInputDidChangeValue(section: Section, input: Input) {
+    public func sectionInputDidChangeValue(_ section: Section, input: Input) {
         dirty = true
         notifyIfFormInputValueChange(section, input: input)
     }
     
-    public func sectionDidChangeState(section: Section) {
+    public func sectionDidChangeState(_ section: Section) {
         setCurrentState(validate())
     }
     
-    public func sectionWasSubmitted(section: Section) {
+    public func sectionWasSubmitted(_ section: Section) {
         
     }
     

@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-public class SelectInputField: UITextField {
-    private var input: SelectInput? = nil
+open class SelectInputField: UITextField {
+    fileprivate var input: SelectInput? = nil
     
-    public func setInput(input: SelectInput) {
+    open func setInput(_ input: SelectInput) {
         self.input = input
         self.delegate = self
         
@@ -26,7 +26,7 @@ public class SelectInputField: UITextField {
 //MARK: - UITextFieldDelegate
 
 extension SelectInputField: UITextFieldDelegate {
-    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
 }
@@ -35,11 +35,11 @@ extension SelectInputField: UITextFieldDelegate {
 
 extension SelectInputField: UIPickerViewDataSource {
     
-    public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if let input = self.input {
             return input.numberOfOptions
         }
@@ -52,14 +52,14 @@ extension SelectInputField: UIPickerViewDataSource {
 
 extension SelectInputField: UIPickerViewDelegate {
     
-    public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let input = self.input {
             input.selectOptionAtIndex(row)
             text = input.optionForIndex(row).displayValue
         }
     }
     
-    public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if let input = self.input {
             return input.optionForIndex(row).displayValue
         }

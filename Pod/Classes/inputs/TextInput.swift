@@ -8,8 +8,8 @@
 
 import UIKit
 
-public class TextInput: Input {
-    public let hint:String
+open class TextInput: Input {
+    open let hint:String
     
     public init(name: String, hint: String) {
         self.hint = hint
@@ -21,7 +21,7 @@ public class TextInput: Input {
         super.init(copy: copy)
     }
     
-    public override func copy() -> TextInput {
+    open override func copy() -> TextInput {
         return TextInput(copy: self)
     }
 }

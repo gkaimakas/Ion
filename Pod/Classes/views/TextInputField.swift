@@ -9,44 +9,44 @@
 import Foundation
 import UIKit
 
-public class TextInputField: UITextField {
+open class TextInputField: UITextField {
     
-	public var input: TextInput? = nil {
+	open var input: TextInput? = nil {
 		didSet {
 			if let input = input {
 				
 			} else {
 				delegate = nil
-				secureTextEntry = false
-				keyboardType = .Default
+				isSecureTextEntry = false
+				keyboardType = .default
 				inputView = nil
 			}
 		}
 	}
 		
-    public func setInput(input: TextInput) {
+    open func setInput(_ input: TextInput) {
         self.delegate = self
         self.input = input
         
         if let passwordInput = self.input as? PasswordInput {
-            secureTextEntry = true
-            keyboardType = .Default
+            isSecureTextEntry = true
+            keyboardType = .default
             inputView = nil
             
             return
         }
         
         if let emailInput = self.input as? EmailInput {
-            secureTextEntry = false
-            keyboardType = .EmailAddress
+            isSecureTextEntry = false
+            keyboardType = .emailAddress
             inputView = nil
             
             return
         }
 		
 		if let PhoneInput = self.input as? PhoneInput {
-			secureTextEntry = false
-			keyboardType = UIKeyboardType.PhonePad
+			isSecureTextEntry = false
+			keyboardType = UIKeyboardType.phonePad
 			inputView = nil
 		}
     }
@@ -55,17 +55,17 @@ public class TextInputField: UITextField {
 }
 
 extension TextInputField: UITextFieldDelegate {
-    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if let input = input {
-            let newValue = (text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            let newValue = (text! as NSString).replacingCharacters(in: range, with: string)
             input.setValue(newValue)
         }
         
         return true
     }
     
-    public func textFieldDidEndEditing(textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if let text = textField.text, let input = self.input {
             input.setValue(text)
         }

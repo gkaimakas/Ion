@@ -13,7 +13,7 @@ public extension UITableViewCell {
 	public var tableView: UITableView? {
 		var view = self.superview
 		
-		while view != nil && !(view?.isKindOfClass(UITableView))! {
+		while view != nil && !(view?.isKind(of: UITableView.self))! {
 			view = view?.superview
 		}
 		

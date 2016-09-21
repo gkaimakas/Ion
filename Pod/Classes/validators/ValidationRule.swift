@@ -8,10 +8,10 @@
 import SwiftValidators
 
 public struct ValidationRule {
-    let rule: Validation
+    let rule: Validator
     let errorMessage: String
     
-    init(rule: Validation, errorMessage: String){
+    init(rule: @escaping Validator, errorMessage: String){
         self.rule = rule
         self.errorMessage = errorMessage
     }

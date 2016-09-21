@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class DateInput: Input {
-    public let hint: String
+open class DateInput: Input {
+    open let hint: String
     
     public init(name: String, hint: String) {
         self.hint = hint

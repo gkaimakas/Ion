@@ -15,7 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8085700D9998C62B9D4B0A89 /* Pods_Ion_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10287D2355A03601479CDD90 /* Pods_Ion_Example.framework */; };
-		DD9D1DD72B4CB40B978C709B /* Pods_Ion_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79981948CDDA377E323DF91 /* Pods_Ion_Tests.framework */; };
+		E17ABD519B9BE76CBEFE317E /* Pods_Ion_Example_Ion_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F1028F3C3B53FE7AB37760 /* Pods_Ion_Example_Ion_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02926C47222C816D535A7C94 /* Pods-Ion_Example-Ion_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ion_Example-Ion_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ion_Example-Ion_Tests/Pods-Ion_Example-Ion_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		10287D2355A03601479CDD90 /* Pods_Ion_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ion_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		137243A01CF43E5A00096B75 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		2BCAD5F025B852C8989EFCBF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -43,8 +44,10 @@
 		607FACE51AFB9204008FA782 /* Ion_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ion_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		61F1028F3C3B53FE7AB37760 /* Pods_Ion_Example_Ion_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ion_Example_Ion_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A0ED8B76E4415CF53AF4552 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		74E1EBB5B2C67DB5C1618A4C /* Pods-Ion_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ion_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ion_Tests/Pods-Ion_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		A2E6CAB3958AD2B1AFB86B71 /* Pods-Ion_Example-Ion_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ion_Example-Ion_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ion_Example-Ion_Tests/Pods-Ion_Example-Ion_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6F0E6E1EF5CD9405FAC303F /* Ion.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Ion.podspec; path = ../Ion.podspec; sourceTree = "<group>"; };
 		E77C447E510384F9EEE84131 /* Pods-Ion_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ion_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ion_Example/Pods-Ion_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EFCAE72D04C491E4B4C3C5A2 /* Pods-Ion_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ion_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ion_Tests/Pods-Ion_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD9D1DD72B4CB40B978C709B /* Pods_Ion_Tests.framework in Frameworks */,
+				E17ABD519B9BE76CBEFE317E /* Pods_Ion_Example_Ion_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +81,8 @@
 				4F1512B6745E965221BEE668 /* Pods-Ion_Example.release.xcconfig */,
 				EFCAE72D04C491E4B4C3C5A2 /* Pods-Ion_Tests.debug.xcconfig */,
 				74E1EBB5B2C67DB5C1618A4C /* Pods-Ion_Tests.release.xcconfig */,
+				A2E6CAB3958AD2B1AFB86B71 /* Pods-Ion_Example-Ion_Tests.debug.xcconfig */,
+				02926C47222C816D535A7C94 /* Pods-Ion_Example-Ion_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			children = (
 				10287D2355A03601479CDD90 /* Pods_Ion_Example.framework */,
 				F79981948CDDA377E323DF91 /* Pods_Ion_Tests.framework */,
+				61F1028F3C3B53FE7AB37760 /* Pods_Ion_Example_Ion_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -169,12 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Ion_Example" */;
 			buildPhases = (
-				C6192AB9A78326283EED7027 /* Check Pods Manifest.lock */,
+				C6192AB9A78326283EED7027 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				A59E7ECF0F9377B09922CFD6 /* Embed Pods Frameworks */,
-				FEC0940F5C25DD2DBACAC677 /* Copy Pods Resources */,
+				A59E7ECF0F9377B09922CFD6 /* [CP] Embed Pods Frameworks */,
+				FEC0940F5C25DD2DBACAC677 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,12 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Ion_Tests" */;
 			buildPhases = (
-				3D3C09C53F3C0D5D95995721 /* Check Pods Manifest.lock */,
+				3D3C09C53F3C0D5D95995721 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				4A370DCCBE2EF6C14E1048D0 /* Embed Pods Frameworks */,
-				37B1AA897B979B3F8983AF66 /* Copy Pods Resources */,
+				4A370DCCBE2EF6C14E1048D0 /* [CP] Embed Pods Frameworks */,
+				37B1AA897B979B3F8983AF66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,14 +219,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 96LJ93WQBU;
+						LastSwiftMigration = 0800;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -265,59 +274,59 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		37B1AA897B979B3F8983AF66 /* Copy Pods Resources */ = {
+		37B1AA897B979B3F8983AF66 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ion_Tests/Pods-Ion_Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ion_Example-Ion_Tests/Pods-Ion_Example-Ion_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3D3C09C53F3C0D5D95995721 /* Check Pods Manifest.lock */ = {
+		3D3C09C53F3C0D5D95995721 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4A370DCCBE2EF6C14E1048D0 /* Embed Pods Frameworks */ = {
+		4A370DCCBE2EF6C14E1048D0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ion_Tests/Pods-Ion_Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ion_Example-Ion_Tests/Pods-Ion_Example-Ion_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A59E7ECF0F9377B09922CFD6 /* Embed Pods Frameworks */ = {
+		A59E7ECF0F9377B09922CFD6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,29 +334,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ion_Example/Pods-Ion_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C6192AB9A78326283EED7027 /* Check Pods Manifest.lock */ = {
+		C6192AB9A78326283EED7027 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FEC0940F5C25DD2DBACAC677 /* Copy Pods Resources */ = {
+		FEC0940F5C25DD2DBACAC677 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,8 +428,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -443,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -464,8 +475,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -481,9 +494,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -492,12 +506,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E77C447E510384F9EEE84131 /* Pods-Ion_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 96LJ93WQBU;
 				INFOPLIST_FILE = Ion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -505,19 +522,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F1512B6745E965221BEE668 /* Pods-Ion_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 96LJ93WQBU;
 				INFOPLIST_FILE = Ion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFCAE72D04C491E4B4C3C5A2 /* Pods-Ion_Tests.debug.xcconfig */;
+			baseConfigurationReference = A2E6CAB3958AD2B1AFB86B71 /* Pods-Ion_Example-Ion_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -531,14 +552,16 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ion_Example.app/Ion_Example";
 			};
 			name = Debug;
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74E1EBB5B2C67DB5C1618A4C /* Pods-Ion_Tests.release.xcconfig */;
+			baseConfigurationReference = 02926C47222C816D535A7C94 /* Pods-Ion_Example-Ion_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -548,6 +571,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ion_Example.app/Ion_Example";
 			};
 			name = Release;

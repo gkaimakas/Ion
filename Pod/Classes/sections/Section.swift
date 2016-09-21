@@ -6,46 +6,48 @@
 //
 //
 
-public class Section{
-    public let id: Int64
-    public let name: String
+open class Section{
+    open let id: Int64
+    open let name: String
     
-    private var dirty = false
-    private var previousState = false
-    private var currentState = false
-    private var submitted = false
+    fileprivate var dirty = false
+    fileprivate var previousState = false
+    fileprivate var currentState = false
+    fileprivate var submitted = false
     
-    private var inputs = [Input]()
+    fileprivate var inputs = [Input]()
     
-    private var sectionListeners = [SectionListener]()
+    fileprivate var sectionListeners = [SectionListener]()
     
     //MARK: - Computed Properties
     
-    public var data: [String: Any]{
+    open var data: [String: Any]{
         return inputs.map{
             $0.data
             }.filter(){
                 $0 != nil
-            }.reduce([String:Any]()) { (var result:[String: Any], data:[String : Any]?) -> [String:Any] in
+            }.reduce([String:Any]()) { (result:[String: Any], data:[String : Any]?) -> [String:Any] in
+				var _result = result
                 if let _data = data {
                     for (key, value) in _data{
-                        result[key] = value
+                        _result[key] = value
                     }
                 }
-                return result
+                return _result
         }
     }
     
-    public var errors:[String]? {
+    open var errors:[String]? {
         let errorList = inputs.map{
             $0.errors
             }.filter(){
                 $0 != nil
-            }.reduce([String]()) { (var result:[String], data: [String]?) -> [String] in
+            }.reduce([String]()) { (result:[String], data: [String]?) -> [String] in
+				var _result = result
                 if let _data = data {
-                    result.appendContentsOf(_data)
+                    _result.append(contentsOf: _data)
                 }
-                return result
+                return _result
         }
         
         if errorList.count != 0{
@@ -55,47 +57,47 @@ public class Section{
         return nil
     }
     
-    public var isDirty: Bool{
+    open var isDirty: Bool{
         return dirty
     }
     
-    public var isValid: Bool {
+    open var isValid: Bool {
         return validate()
     }
     
-    public var isSubmitted: Bool {
+    open var isSubmitted: Bool {
         return submitted
     }
     
-    public var numberOfInputs: Int {
+    open var numberOfInputs: Int {
         return inputs.count
     }
     
     
     //MARK: - Initializers
     public init(name:String){
-        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.id = Int64(Date().timeIntervalSince1970 * 1000)
         self.name = name
     }
     
-    public func addInput(input:Input) -> Section{
+    open func addInput(_ input:Input) -> Section{
         inputs.append(input)
         input.addInputListener(self)
         
         return self
     }
     
-    public func addSectionListener(listener: SectionListener){
+    open func addSectionListener(_ listener: SectionListener){
         sectionListeners.append(listener)
     }
     
-    public func inputAtIndex(index: Int) -> Input {
+    open func inputAtIndex(_ index: Int) -> Input {
         return inputs[index]
     }
     
     //Mark: - Notifications
     
-    internal func notifyIfSectionInputValueChange(input: Input){
+    internal func notifyIfSectionInputValueChange(_ input: Input){
         for listener:SectionListener in sectionListeners{
             listener.sectionInputDidChangeValue(self, input: input)
         }
@@ -118,19 +120,19 @@ public class Section{
         
     }
     
-    public func setCurrentState(state:Bool){
+    open func setCurrentState(_ state:Bool){
         previousState = currentState
         currentState = state
     }
 
-    public func submit(){
+    open func submit(){
         submitted = true
         for input:Input in inputs{
             input.submit()
         }
     }
     
-    public func validate() -> Bool{
+    open func validate() -> Bool{
         return inputs.reduce(true){
             $0 && $1.validate()
         }
@@ -142,21 +144,21 @@ public class Section{
 //MARK: - InputListener implementation
 extension Section: InputListener {
     
-    public func inputDidChangeState(input: Input) {
+    public func inputDidChangeState(_ input: Input) {
         setCurrentState(validate())
         notifyIfSectionStateChange()
     }
     
-    public func inputDidChangeValue(input: Input) {
+    public func inputDidChangeValue(_ input: Input) {
         dirty = true
         notifyIfSectionInputValueChange(input)
     }
     
-    public func inputWasForceValidated(input: Input) {
+    public func inputWasForceValidated(_ input: Input) {
         
     }
     
-    public func inputWasSubmitted(input: Input) {
+    public func inputWasSubmitted(_ input: Input) {
         
     }
 }

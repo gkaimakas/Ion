@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Ion"
-  s.version          = "0.6.3"
+  s.version          = "0.10.0"
   s.summary          = "A short description of Ion."
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/gkaimakas/Ion.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
@@ -40,5 +40,5 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
 
   s.frameworks = 'UIKit'
-  s.dependency 'SwiftValidators', '~> 2.2.0'
+  s.dependency 'SwiftValidators', '~> 5.1.0'
 end

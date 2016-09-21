@@ -5,5 +5,5 @@
 //  Created by Γιώργος Καϊμακάς on 06/05/16.
 //
 //
-public class PhoneInput: TextInput {
+open class PhoneInput: TextInput {
 }

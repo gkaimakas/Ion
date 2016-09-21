@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        Form(name: "hello")
+        let _ = Form(name: "hello")
             .addSection(
                 Section(name: "from the")
                     .addInput(Input(name: "other side")

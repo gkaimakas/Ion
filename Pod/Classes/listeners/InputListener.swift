@@ -7,8 +7,8 @@
 //
 
 public protocol InputListener {
-    func inputDidChangeValue(input: Input)
-    func inputDidChangeState(input: Input)
-    func inputWasSubmitted(input: Input)
-    func inputWasForceValidated(input: Input)
+    func inputDidChangeValue(_ input: Input)
+    func inputDidChangeState(_ input: Input)
+    func inputWasSubmitted(_ input: Input)
+    func inputWasForceValidated(_ input: Input)
 }

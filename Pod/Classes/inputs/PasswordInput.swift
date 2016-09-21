@@ -6,6 +6,6 @@
 //
 //
 
-public class PasswordInput: TextInput{
+open class PasswordInput: TextInput{
     
 }

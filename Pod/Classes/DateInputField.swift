@@ -9,29 +9,29 @@
 import Foundation
 import UIKit
 
-public class DateInputField: UITextField {
-    public static let DefaultDateFormat = "dd-MM-yyyy"
+open class DateInputField: UITextField {
+    open static let DefaultDateFormat = "dd-MM-yyyy"
     
-    private var input: DateInput?
-    private let datePicker = UIDatePicker()
+    fileprivate var input: DateInput?
+    fileprivate let datePicker = UIDatePicker()
     
-    public var dateFormat: String? = DateInputField.DefaultDateFormat
+    open var dateFormat: String? = DateInputField.DefaultDateFormat
     
-    public func setInput(input: DateInput) {
+    open func setInput(_ input: DateInput) {
         self.input = input
         
-        datePicker.datePickerMode = .Date
-        datePicker.addTarget(self, action: "handleDateSet:", forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(DateInputField.handleDateSet(_:)), for: UIControlEvents.valueChanged)
         
         inputView = datePicker
     }
     
-    func handleDateSet(sender: UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
+    func handleDateSet(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
         
         if let dateFormat = dateFormat, let input = self.input {
             dateFormatter.dateFormat = dateFormat
-            let dateString = dateFormatter.stringFromDate(sender.date)
+            let dateString = dateFormatter.string(from: sender.date)
             text = dateString
             input.setValue(dateString)
         }

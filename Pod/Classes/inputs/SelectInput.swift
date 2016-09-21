@@ -6,7 +6,7 @@
 //
 //
 
-public class SelectInput: Input {
+open class SelectInput: Input {
     public struct Option {
         public let value: String
         public let displayValue: String
@@ -17,13 +17,13 @@ public class SelectInput: Input {
         }
     }
     
-    private var options = [Option]()
+    fileprivate var options = [Option]()
     
-    public let description: String
+    open let description: String
     
     //MARK: - Computed Properties
     
-    public var numberOfOptions: Int {
+    open var numberOfOptions: Int {
         return options.count
     }
     
@@ -32,25 +32,25 @@ public class SelectInput: Input {
         super.init(name: name)
     }
     
-    public func addOption(option: Option) -> SelectInput {
+    open func addOption(_ option: Option) -> SelectInput {
         self.options.append(option)
         return self
     }
     
-    public func addOption(displayValue:String, value:String) -> SelectInput {
+    open func addOption(_ displayValue:String, value:String) -> SelectInput {
         return self.addOption(Option(displayValue: displayValue, value: value))
     }
     
-    public func optionForIndex(index:Int) -> Option {
+    open func optionForIndex(_ index:Int) -> Option {
         return options[index]
     }
     
-    public func selectOptionAtIndex(index: Int) {
+    open func selectOptionAtIndex(_ index: Int) {
         let option = options[index]
         self.setValue(option.value)
     }
     
-    public func selectOptionWithDisplayValue(displayValue: String) {
+    open func selectOptionWithDisplayValue(_ displayValue: String) {
         var result: Option? = nil
         for option in options {
             if option.displayValue == displayValue {

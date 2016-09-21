@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-public class SwitchInputView: UISwitch {
-    private var input: SwitchInput?
+open class SwitchInputView: UISwitch {
+    fileprivate var input: SwitchInput?
     
-    public func setInput(input: SwitchInput) {
+    open func setInput(_ input: SwitchInput) {
         self.input = input
-        self.addTarget(self, action: "handleSwitch", forControlEvents: .ValueChanged)
+        self.addTarget(self, action: #selector(SwitchInputView.handleSwitch), for: .valueChanged)
     }
     
     func handleSwitch() {
-        if self.on {
+        if self.isOn {
             input?.setOn()
         } else {
             input?.setOff()

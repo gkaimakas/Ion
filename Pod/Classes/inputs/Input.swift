@@ -11,37 +11,37 @@ import SwiftValidators
 public typealias BeforeValueChangeAction = (Input) -> Void
 public typealias AfterValueChangeAction = (Input) -> Void
 
-public class Input {
-    public static let DEFAULT_VALUE = ""
+open class Input {
+    open static let DEFAULT_VALUE = ""
     
-    public let id: Int64
-    public let name: String
+    open let id: Int64
+    open let name: String
     
-    private var dirty = false
-    private var currentState = false
-    private var previousState = false
-    private var submitted = false
+    fileprivate var dirty = false
+    fileprivate var currentState = false
+    fileprivate var previousState = false
+    fileprivate var submitted = false
     
-    private let originalValue: String
-    private var value: String = Input.DEFAULT_VALUE
-    private var previousValue: String?
+    fileprivate let originalValue: String
+    public var value: String = Input.DEFAULT_VALUE
+    fileprivate var previousValue: String?
     
-    private var inputListeners = [InputListener]()
-    private var validationRules = [ValidationRule]()
+    fileprivate var inputListeners = [InputListener]()
+    fileprivate var validationRules = [ValidationRule]()
     
-    private var beforeValueChangeActions: [BeforeValueChangeAction] = []
-    private var afterValueChangeActions: [AfterValueChangeAction] = []
+    fileprivate var beforeValueChangeActions: [BeforeValueChangeAction] = []
+    fileprivate var afterValueChangeActions: [AfterValueChangeAction] = []
     
     //MARK: - Computed Properties
     
-    public var data: [String: Any]?{
+    open var data: [String: Any]?{
         if !self.isValid{
             return nil
         }
         return [self.name : self.value]
     }
     
-    public var errors:[String]? {
+    open var errors:[String]? {
         let errorMessages = validationRules.filter(){
             $0.rule(self.value) == false
             }
@@ -56,21 +56,21 @@ public class Input {
         return nil
     }
     
-    public var isDirty: Bool {
+    open var isDirty: Bool {
         return dirty
     }
     
-    public var isValid: Bool {
+    open var isValid: Bool {
         return self.validate()
     }
     
-    public var isSubmitted: Bool {
+    open var isSubmitted: Bool {
         return self.submitted
     }
     
     //MARK: - Initializers
     public init(name: String){
-        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.id = Int64(Date().timeIntervalSince1970 * 1000)
         self.name = name
         self.originalValue = Input.DEFAULT_VALUE
         self.value = Input.DEFAULT_VALUE
@@ -78,7 +78,7 @@ public class Input {
     }
     
     public init(name: String, value: String){
-        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.id = Int64(Date().timeIntervalSince1970 * 1000)
         self.name = name
         self.originalValue = value
         self.value = value
@@ -86,7 +86,7 @@ public class Input {
     }
     
     public init(copy: Input) {
-        self.id = Int64(NSDate().timeIntervalSince1970 * 1000)
+        self.id = Int64(Date().timeIntervalSince1970 * 1000)
         self.name = copy.name
         
         self.originalValue = copy.originalValue
@@ -105,21 +105,21 @@ public class Input {
         // Input Listeners and parentSection must not be copied
     }
     
-    public func addInputListener(listener:InputListener) -> Input {
+    open func addInputListener(_ listener:InputListener) -> Input {
         inputListeners.append(listener)
         return self
     }
     
-    public func addValidationRule(rule: Validation, errorMessage: String) -> Input{
+    open func addValidationRule(_ rule: @escaping Validator, errorMessage: String) -> Input{
         validationRules.append(ValidationRule(rule: rule, errorMessage: errorMessage))
         return self
     }
     
-    public func copy() -> Input{
+    open func copy() -> Input{
         return Input(copy: self)
     }
     
-    public func forceValidate() {
+    open func forceValidate() {
         setCurrentState(validate())
         notifyIfInputForcedValidate()
         notifyIfInputValueChanged()
@@ -159,22 +159,22 @@ public class Input {
         }
     }
     
-    public func afterValueChange(action: AfterValueChangeAction) -> Input {
+    open func afterValueChange(_ action: @escaping AfterValueChangeAction) -> Input {
         afterValueChangeActions.append(action)
         return self
     }
     
-    public func beforeValueChage(action: BeforeValueChangeAction) -> Input{
+    open func beforeValueChage(_ action: @escaping BeforeValueChangeAction) -> Input{
         beforeValueChangeActions.append(action)
         return self
     }
     
-    public func setCurrentState(state:Bool){
+    open func setCurrentState(_ state:Bool){
         previousState = currentState
         currentState = state
     }
     
-    public func setValue(value:String){
+    open func setValue(_ value:String){
         dirty = true
         previousValue = self.value
 		
@@ -194,19 +194,19 @@ public class Input {
         notifyIfInputStateChanged()
     }
     
-    public func submit(){
+    open func submit(){
         submitted = true
         notifyIfInputSubmitted()
     }
     
-    public func validate() -> Bool {
+    open func validate() -> Bool {
         return validationRules.reduce(true){
             $0 && $1.rule(self.value)
         }
     }
 }
 
-extension Input: ValidatorProtocol {
+extension Input: ValueProvider {
     public func getValue() -> String{
         return value
     }

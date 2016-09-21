@@ -1,11 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'Ion_Example', :exclusive => true do
+target 'Ion_Example' do
   pod "Ion", :path => "../"
-end
 
-target 'Ion_Tests', :exclusive => true do
-    pod 'Quick'
-    pod 'Nimble'
+	target 'Ion_Tests' do
+		pod 'Quick', :git => 'https://github.com/Quick/Quick', :branch => 'swift-3.0'
+		pod 'Nimble', :git => 'https://github.com/Quick/Nimble'
+	end
+
 end

@@ -7,11 +7,11 @@
 //
 
 
-public class SwitchInput: Input {
-    public static let ON_VALUE = "true"
-    public static let OFF_VALUE = "false"
+open class SwitchInput: Input {
+    open static let ON_VALUE = "true"
+    open static let OFF_VALUE = "false"
     
-    public let description: String
+    open let description: String
     
     public init(name: String, description: String) {
         self.description = description
@@ -23,19 +23,19 @@ public class SwitchInput: Input {
         super.init(copy: copy)
     }
     
-    public override func copy() -> SwitchInput {
+    open override func copy() -> SwitchInput {
         return SwitchInput(copy: self)
     }
     
-    public var isOn: Bool{
+    open var isOn: Bool{
         return self.getValue() == SwitchInput.ON_VALUE
     }
     
-    public func setOn(){
+    open func setOn(){
         setValue(SwitchInput.ON_VALUE)
     }
     
-    public func setOff(){
+    open func setOff(){
         setValue(SwitchInput.OFF_VALUE)
     }
 }
