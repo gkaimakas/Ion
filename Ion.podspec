@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "Ion"
   s.version          = "0.10.0"
-  s.summary          = "A short description of Ion."
+  s.summary          = "Blah blah blah"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 						on a backend using Alamofire and much more.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/Ion"
+  s.homepage         = "https://github.com/gkaimakas/Ion"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "George Kaimakas" => "gkaimakas@gmail.com" }
@@ -34,10 +34,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'Ion' => ['Pod/Assets/*.png']
-  }
-  # s.public_header_files = 'Pod/Classes/**/*.h'
 
   s.frameworks = 'UIKit'
   s.dependency 'SwiftValidators', '~> 5.1.0'

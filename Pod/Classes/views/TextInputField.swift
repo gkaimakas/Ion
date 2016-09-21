@@ -13,7 +13,7 @@ open class TextInputField: UITextField {
     
 	open var input: TextInput? = nil {
 		didSet {
-			if let input = input {
+			if let _ = input {
 				
 			} else {
 				delegate = nil
@@ -28,7 +28,7 @@ open class TextInputField: UITextField {
         self.delegate = self
         self.input = input
         
-        if let passwordInput = self.input as? PasswordInput {
+        if let _ = self.input as? PasswordInput {
             isSecureTextEntry = true
             keyboardType = .default
             inputView = nil
@@ -36,7 +36,7 @@ open class TextInputField: UITextField {
             return
         }
         
-        if let emailInput = self.input as? EmailInput {
+        if let _ = self.input as? EmailInput {
             isSecureTextEntry = false
             keyboardType = .emailAddress
             inputView = nil
@@ -44,7 +44,7 @@ open class TextInputField: UITextField {
             return
         }
 		
-		if let PhoneInput = self.input as? PhoneInput {
+		if let _ = self.input as? PhoneInput {
 			isSecureTextEntry = false
 			keyboardType = UIKeyboardType.phonePad
 			inputView = nil

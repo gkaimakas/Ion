@@ -20,6 +20,7 @@ open class SelectInputField: UITextField {
         picker.dataSource = self
         picker.delegate = self
         inputView = picker
+		
     }
 }
 

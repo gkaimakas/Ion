@@ -82,7 +82,7 @@ open class Section{
     
     open func addInput(_ input:Input) -> Section{
         inputs.append(input)
-        input.addInputListener(self)
+        let _ = input.addInputListener(self)
         
         return self
     }
