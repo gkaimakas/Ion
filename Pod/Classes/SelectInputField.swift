@@ -20,6 +20,15 @@ open class SelectInputField: UITextField {
         picker.dataSource = self
         picker.delegate = self
         inputView = picker
+
+		if let selectedIndex = input.selectedOptionIndex,
+			let selectedOption = input.selectedOption {
+
+			if selectedIndex < input.numberOfOptions {
+				picker.selectRow(selectedIndex, inComponent: 0, animated: true)
+				self.text = selectedOption.displayValue
+			}
+		}
 		
     }
 }

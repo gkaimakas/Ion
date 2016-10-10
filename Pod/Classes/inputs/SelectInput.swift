@@ -20,6 +20,19 @@ open class SelectInput: Input {
     fileprivate var options = [Option]()
     
     open let description: String
+
+	public var selectedOption: Option? {
+		return options
+			.filter() { $0.value == self.value }
+			.first
+	}
+
+	public var selectedOptionIndex: Int? {
+		return options.enumerated()
+			.filter() { $0.element.value == self.value }
+			.map() { $0.offset }
+			.first
+	}
     
     //MARK: - Computed Properties
     
