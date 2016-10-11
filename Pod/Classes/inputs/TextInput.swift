@@ -20,7 +20,7 @@ open class TextInput: Input {
         self.hint = copy.hint
         super.init(copy: copy)
     }
-    
+
     open override func copy() -> TextInput {
         return TextInput(copy: self)
     }

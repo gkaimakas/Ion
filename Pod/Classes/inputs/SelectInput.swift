@@ -44,16 +44,19 @@ open class SelectInput: Input {
         self.description = description
         super.init(name: name)
     }
-    
-    open func addOption(_ option: Option) -> SelectInput {
+
+	@discardableResult
+    open func addOption(_ option: Option) -> Self {
         self.options.append(option)
         return self
     }
-    
-    open func addOption(_ displayValue:String, value:String) -> SelectInput {
+
+	@discardableResult
+    open func addOption(_ displayValue:String, value:String) -> Self {
         return self.addOption(Option(displayValue: displayValue, value: value))
     }
-    
+
+	@discardableResult
     open func optionForIndex(_ index:Int) -> Option {
         return options[index]
     }

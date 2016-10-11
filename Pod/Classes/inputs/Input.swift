@@ -104,17 +104,20 @@ open class Input {
         
         // Input Listeners and parentSection must not be copied
     }
-    
-    open func addInputListener(_ listener:InputListener) -> Input {
+
+	@discardableResult
+    open func addInputListener(_ listener:InputListener) -> Self {
         inputListeners.append(listener)
         return self
     }
-    
-    open func addValidationRule(_ rule: @escaping Validator, errorMessage: String) -> Input{
+
+    @discardableResult
+    open func addValidationRule(_ rule: @escaping Validator, errorMessage: String) -> Self{
         validationRules.append(ValidationRule(rule: rule, errorMessage: errorMessage))
         return self
     }
-    
+
+    @discardableResult
     open func copy() -> Input{
         return Input(copy: self)
     }
@@ -158,17 +161,20 @@ open class Input {
             listener.inputWasForceValidated(self)
         }
     }
-    
-    open func afterValueChange(_ action: @escaping AfterValueChangeAction) -> Input {
+
+	@discardableResult
+    open func afterValueChange(_ action: @escaping AfterValueChangeAction) -> Self {
         afterValueChangeActions.append(action)
         return self
     }
-    
-    open func beforeValueChage(_ action: @escaping BeforeValueChangeAction) -> Input{
+
+    @discardableResult
+    open func beforeValueChage(_ action: @escaping BeforeValueChangeAction) -> Self{
         beforeValueChangeActions.append(action)
         return self
     }
-    
+
+	
     open func setCurrentState(_ state:Bool){
         previousState = currentState
         currentState = state
@@ -198,7 +204,8 @@ open class Input {
         submitted = true
         notifyIfInputSubmitted()
     }
-    
+
+	@discardableResult
     open func validate() -> Bool {
         return validationRules.reduce(true){
             $0 && $1.rule(self.value)
