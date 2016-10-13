@@ -26,7 +26,8 @@ open class SwitchInput: Input {
     open override func copy() -> SwitchInput {
         return SwitchInput(copy: self)
     }
-    
+
+	
     open var isOn: Bool{
         return self.getValue() == SwitchInput.ON_VALUE
     }

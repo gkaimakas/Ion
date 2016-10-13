@@ -22,6 +22,8 @@ open class DateInputField: UITextField {
         
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(DateInputField.handleDateSet(_:)), for: UIControlEvents.valueChanged)
+		datePicker.maximumDate = Date().addingTimeInterval(-18 * 31_536_000)
+		datePicker.minimumDate = Date().addingTimeInterval(-75 * 31_536_000)
         
         inputView = datePicker
     }
